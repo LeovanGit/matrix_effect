@@ -39,7 +39,7 @@ public:
         // this func draw symbol only if it less bright than symbol in current cell
 
         // main (which near white) symbol
-        if (get_symbol_brightness(y, x) > 5) Draw_rand_symbol(y, x, 5);
+        if (get_symbol_brightness(y, x) >= 5) Draw_rand_symbol(y, x, 5);
 
         // other symbols
         int last_y = y - len + 1;
@@ -48,7 +48,7 @@ public:
         {
             // [1; 4] depends on symbol's distance to main symbol
             int color = 1 + (double(i - last_y) / (len - 1)) * color_count;
-            if (get_symbol_brightness(i, x) > color) Draw_rand_symbol(i, x, color);
+            if (get_symbol_brightness(i, x) >= color) Draw_rand_symbol(i, x, color);
         }
 
         // remove last (amount of "speed") symbols
