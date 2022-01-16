@@ -1,8 +1,8 @@
 #include <iostream>
 #include <ncurses.h>
 
-#define lines_count 50 // 50
-#define general_slowdown 1 // 1
+#define lines_count 50
+#define general_slowdown 1
 #define color_count 4
 
 const char symbols[] = "1QW2ER3TY4UI5IO6P[7AS8DF]9FG0HJK/LNCXZ";
@@ -11,8 +11,7 @@ int win_height = -1, win_width = -1;
 
 inline int rand_from_range(int a, int b)
 {
-    static const double r = 1.0 / RAND_MAX; 
-    return int(a + (r * rand()) * (b - a));
+    return a + rand() % (b - a);
 }
 
 class Line
@@ -20,7 +19,7 @@ class Line
 public: 
     Line() : x(rand_from_range(0, win_width)), 
              y(0), 
-             speed(rand_from_range(1, 3)),
+             speed(rand_from_range(1, 5)),
              len(rand_from_range(win_height / 4, 3 * win_height / 4)) {}
 
     void Move()
@@ -37,6 +36,7 @@ public:
     void Draw()
     {     
         // this func draw symbol only if it less bright than symbol in current cell
+        // because they blink when more then one lines in one place
 
         // main (which near white) symbol
         if (get_symbol_brightness(y, x) >= 5) Draw_rand_symbol(y, x, 5);
