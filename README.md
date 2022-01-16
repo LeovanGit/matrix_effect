@@ -1,4 +1,4 @@
-Simple matrix (symbols rain) effect for terminal using ncurses.
+Simple matrix (symbols rain) effect for terminal using ncurses library.
 
 How to compile: ```g++ -Wall -lncurses matrix.cpp && ./a.out```
 
